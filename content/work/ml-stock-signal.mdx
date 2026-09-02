@@ -1,0 +1,42 @@
+{/*
+  TODO — REVIEW BEFORE LAUNCH.
+  Scaffolding, not fact. Replace the specifics with what you actually built.
+  Note the framing CLAUDE.md asks for: this is a class project, trained using
+  course resources. Keep that explicit — it's the honest version.
+*/}
+
+## What it is
+
+A machine learning model that produces a signal from historical market data,
+trained as a class project using course-provided resources, then deployed to
+AWS endpoints and connected to a small hosted app so it could actually serve
+predictions rather than sit in a notebook.
+
+To be clear about what this is: the modeling work leaned on course materials
+and guidance. The part I drove was everything after training.
+
+## Why I built it
+
+A model that only runs in a notebook has skipped most of the hard parts. I
+wanted to take something through to a real endpoint and find out what breaks in
+between — which turned out to be most of it.
+
+{/* TODO: replace with your actual motivation. */}
+
+## What I learned
+
+- **Deployment is where the assumptions surface.** Features that were trivial
+  to compute over a static training set had to be computed on demand, from data
+  arriving in a different shape. Reconciling those two was the bulk of the work.
+- **Endpoints cost money while they idle.** Which is an obvious thing to say and
+  a less obvious thing to plan for. It changed how I thought about the
+  architecture.
+- **Backtest performance is not a promise.** The model looks better on
+  historical data than it has any right to look going forward, and understanding
+  why that's true was probably the most valuable thing I took from it.
+
+## Where it stands
+
+Complete as a class project. {/* TODO: note anything you'd do differently. */}
+It's here because of what the deployment taught me, not as a claim that the
+model predicts anything useful.

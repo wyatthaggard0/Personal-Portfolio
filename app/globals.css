@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*
+  Single source of truth for the palette and type scale.
+  Change a value here and it propagates everywhere — no colors are
+  hardcoded in components.
+*/
+@theme {
+  /* Palette — warm tan paper, near-black ink, warm taupe-gray metadata.
+     No accent color by design. */
+  --color-paper: #f4efe4;
+  --color-ink: #201d18;
+  --color-taupe: #8c8370;
+  --color-hairline: #d8d0be;
+
+  /* Serif display for titles, sans for body, mono for metadata. */
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  /* Slightly open body leading — this reads as a document, not an app. */
+  line-height: 1.65;
+}
+
+/* Metadata rendered in mono sits optically large next to serif/sans.
+   Nudge it down and open the tracking so it reads as a label. */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-taupe);
+}
+
+/* Purposeful hover only: links underline on hover, nothing animates in. */
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}

@@ -1,0 +1,48 @@
+{/*
+  TODO — REVIEW BEFORE LAUNCH.
+  This write-up is scaffolding, not fact. I didn't have the details of what
+  you actually built, so the structure is here and the specifics are yours to
+  fill in. Rewrite freely; delete anything that isn't true.
+*/}
+
+## What it is
+
+Swix is an attempt at ticketing where the ticket itself is the asset — issued,
+verified, and transferred on-chain rather than held in a platform's database.
+The question I wanted to answer was whether the parts that sound simple in a
+whitepaper survive contact with the details: transfer rules, resale limits,
+what happens when someone loses access to a wallet.
+
+It is a work in progress. I'd rather show it mid-flight than wait for a
+version that never quite arrives.
+
+## Why I built it
+
+Ticketing is a good excuse to learn smart contracts because the domain has
+real constraints. A ticket has to be unique, it has to be verifiable at a door
+by someone who is not a developer, and it has to be transferable without
+letting scalpers trivially automate the whole thing. Those constraints push
+back on naive designs quickly.
+
+{/* TODO: replace with your actual motivation. */}
+
+## What I learned
+
+- **On-chain state is expensive, so most design work is deciding what doesn't
+  go on-chain.** The first version tried to store too much. Trimming it down to
+  ownership and transfer rules — and leaving presentation off-chain — made
+  everything cheaper and easier to reason about.
+- **Immutability changes how you write code.** There is no shipping a fix on
+  Monday. That made me slower and more deliberate in a way I think was good for
+  me.
+- **The interesting problems were at the edges,** not in the core contract:
+  wallet onboarding for people who don't own crypto, what verification looks
+  like offline, how to handle a refund when the canonical record isn't yours to
+  edit.
+
+## Where it stands
+
+{/* TODO: describe the current state honestly — what works, what doesn't. */}
+
+Still in progress. The contract logic works in testing; the parts I'd want to
+solve before calling it real are onboarding and the door-verification flow.
