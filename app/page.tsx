@@ -6,9 +6,54 @@ import { projects } from "@/content/projects";
 
 /*
   Homepage — reads top to bottom like a cover letter followed by a resume:
-  headshot + bio, experience, interests, then the Selected work list.
-  Sections are separated by hairline rules; no cards, no shadows.
+  headshot + bio, education, experience, leadership, interests, then the
+  Selected work list. Sections are separated by hairline rules; no cards,
+  no shadows, no dates.
 */
+
+/** Section wrapper: hairline rule + mono label. */
+function Section({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="mt-12 border-t border-hairline pt-8">
+      <h2 className="meta">{label}</h2>
+      {children}
+    </section>
+  );
+}
+
+/*
+  Experience and leadership entries are the same shape: role + one-line note
+  on the left, organization right-aligned in mono on desktop.
+*/
+function RoleList({
+  entries,
+}: {
+  entries: { role: string; org: string; note: string }[];
+}) {
+  return (
+    <ul className="mt-4 space-y-5">
+      {entries.map((entry) => (
+        <li
+          key={`${entry.org}-${entry.role}`}
+          className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+        >
+          <div>
+            <p className="font-display text-lg leading-snug">{entry.role}</p>
+            <p className="mt-0.5">{entry.note}</p>
+          </div>
+          <p className="meta shrink-0 sm:text-right">{entry.org}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -30,31 +75,37 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="mt-12 border-t border-hairline pt-8">
-        <h2 className="meta">Experience</h2>
-        <ul className="mt-4 space-y-5">
-          {profile.experience.map((job, i) => (
-            <li
-              key={i}
-              className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-            >
-              <div>
-                <p className="font-display text-lg leading-snug">{job.role}</p>
-                <p className="mt-0.5">{job.note}</p>
-              </div>
-              <p className="meta shrink-0 sm:text-right">{job.org}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <Section label="Education">
+        <div className="mt-4 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+          <div>
+            <p className="font-display text-lg leading-snug">
+              {profile.education.school}
+            </p>
+            <p className="mt-0.5">{profile.education.degree}</p>
+            <p className="meta mt-1">{profile.education.honors}</p>
+          </div>
+          <p className="meta shrink-0 sm:text-right">{profile.education.org}</p>
+        </div>
+      </Section>
 
-      <section className="mt-12 border-t border-hairline pt-8">
-        <h2 className="meta">Interests</h2>
+      <Section label="Experience">
+        <RoleList entries={profile.experience} />
+      </Section>
+
+      <Section label="Leadership">
+        <RoleList entries={profile.leadership} />
+      </Section>
+
+      <Section label="Interests">
         <p className="meta mt-3 text-ink">{profile.interests.join(" · ")}</p>
-      </section>
+      </Section>
 
-      <section className="mt-12 border-t border-hairline pt-8">
-        <h2 className="meta">Selected work</h2>
+      <Section label="Tools">
+        <p className="meta mt-3 text-ink">{profile.tools.join(" · ")}</p>
+        <p className="meta mt-2">{profile.certifications}</p>
+      </Section>
+
+      <Section label="Selected work">
         <ul className="mt-6 space-y-12">
           {projects.map((project, i) => (
             <li key={project.slug}>
@@ -65,7 +116,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
     </>
   );
 }

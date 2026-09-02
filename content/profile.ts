@@ -1,30 +1,28 @@
 /*
-  Bio, experience, and interests for the homepage.
+  Bio, education, experience, leadership, and interests for the homepage.
+  Sourced from Wyatt's resume — this is the only place these facts live.
 
-  ⚠ EVERYTHING MARKED "TODO" BELOW IS PLACEHOLDER TEXT.
-  I did not have your real bio or experience details, so I left the structure
-  in place with obvious stand-ins rather than inventing facts about you.
-  Replace these before going live — this file is the only place they live.
-
-  Per CLAUDE.md: no dates anywhere, and no email/phone/contact form on the
-  site at all. Do not add a contact field here.
+  Two hard constraints from CLAUDE.md, both deliberate:
+    - NO dates anywhere. Entries are ordered most-recent-first by convention
+      only. Do not add a date/duration field.
+    - NO email, phone, or contact form anywhere on the site, to avoid scraper
+      exposure. The resume's phone and email are intentionally omitted.
 */
 
 export const profile = {
   name: "Wyatt Haggard",
 
   /** Sits under the name in mono. One short line. */
-  // TODO: replace with your actual one-liner.
-  tagline: "Texas Christian University",
+  tagline: "Accounting & Business Information Systems · Texas Christian University",
 
   /*
-    The cover-letter paragraph. Two or three sentences, first person.
-    Tone per CLAUDE.md: "here are projects and ideas I've explored and learned
-    from" — not a sales pitch, not a claim to expertise.
+    The cover-letter paragraph. Tone per CLAUDE.md: "here are projects and
+    ideas I've explored and learned from" — not a sales pitch, not a claim to
+    expertise.
   */
-  // TODO: rewrite in your own voice.
   bio: [
-    "I build things to find out how they work. Most of what's here started as a question I couldn't answer by reading about it — how a smart contract behaves under real constraints, what it takes to get a model serving predictions, how to make a pile of infrastructure data legible at a glance.",
+    "I study accounting and business information systems at TCU, on the financial technologies track. The coursework is where I learned to read a system; the projects here are where I found out what I actually understood.",
+    "Most of them started as a question I couldn't answer by reading about it — how a smart contract behaves once real constraints show up, what it takes to get a model actually serving predictions, how to make a pile of infrastructure data legible at a glance.",
     "None of these are finished products and I'm not claiming expertise in any of them. They're the projects I learned the most from, written up honestly about what worked and what didn't.",
   ],
 
@@ -34,35 +32,50 @@ export const profile = {
     alt: "Wyatt Haggard",
   },
 
-  /*
-    Work experience. No dates — CLAUDE.md is explicit about that, so entries
-    are ordered most-recent-first by convention only.
-  */
-  // TODO: replace all three entries with your real experience.
+  education: {
+    school: "Texas Christian University",
+    org: "Neeley School of Business",
+    degree:
+      "B.B.A. — Accounting and Business Information Systems: Financial Technologies",
+    honors: "Dean's Honors List",
+  },
+
+  /** Most-recent-first by convention. No dates — see note above. */
   experience: [
     {
-      role: "TODO — Your Role",
-      org: "TODO — Organization",
-      note: "One line on what you actually did there.",
+      role: "Tax Intern",
+      org: "Burgher Haggard",
+      note: "Prepared individual returns with K-1, rental, and oil & gas income in UltraTax CS; managed depreciation schedules and resolved e-file diagnostics through peak season.",
     },
     {
-      role: "TODO — Your Role",
-      org: "TODO — Organization",
-      note: "One line on what you actually did there.",
+      role: "Rodeo Maintenance Worker",
+      org: "Steamboat Springs Parks & Recreation",
+      note: "Ran tractors, skid steers, and water trucks to prepare arenas and grounds for Pro Rodeo events, and kept irrigation and equipment in working order.",
     },
     {
-      role: "TODO — Your Role",
-      org: "TODO — Organization",
-      note: "One line on what you actually did there.",
+      role: "Farmhand",
+      org: "Windhaven Farm",
+      note: "Plowed and tilled 365 acres for seasonal planting, maintained 15 acres of pasture and grounds, and handled routine repairs on farm equipment.",
     },
   ],
 
-  /** Short list, rendered inline in mono. Keep it to a handful. */
-  // TODO: replace with your actual interests.
-  interests: [
-    "Smart contracts",
-    "Applied ML",
-    "Infrastructure",
-    "Systems design",
+  leadership: [
+    {
+      role: "President",
+      org: "Business Information Systems Club, TCU",
+      note: "Elected to lead a 190+ member organization — executive board operations, strategic planning, alumni mixers, and recruitment.",
+    },
   ],
+
+  /** Short list, rendered inline in mono. */
+  interests: [
+    "Financial technology",
+    "Predictive modeling",
+    "Blockchain",
+    "Data visualization",
+  ],
+
+  /** Tools and credentials, rendered inline in mono. */
+  tools: ["Python", "Tableau", "Power BI", "Claude", "Excel"],
+  certifications: "Microsoft Office Specialist — Excel, PowerPoint",
 };
