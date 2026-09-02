@@ -30,7 +30,7 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   // Absolute URLs for OG tags. Required for link previews to resolve images.
-  metadataBase: new URL("https://wyatthaggard.com"),
+  metadataBase: new URL("https://wyatt-haggard.com"),
   title: {
     default: `${profile.name}`,
     template: `%s — ${profile.name}`,

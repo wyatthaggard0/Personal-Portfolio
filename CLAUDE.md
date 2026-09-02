@@ -6,7 +6,7 @@ Public site for anyone who clicks through from LinkedIn out of curiosity, no spe
 ## Stack
 - Next.js 15, Tailwind, MDX
 - Built locally in VS Code, pushed to GitHub, deployed via Vercel (Vercel repo linked to GitHub)
-- Domain: wyatthaggard.com, purchased through Vercel
+- Domain: wyatt-haggard.com, purchased through Vercel
 - Project build driven by CLAUDE.md
 - No backend/database — static content, MDX-driven
 - No contact form, no email/phone anywhere on the site (avoid scraper/bot exposure)
