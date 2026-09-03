@@ -1,48 +1,104 @@
 {/*
-  TODO — REVIEW BEFORE LAUNCH.
-  This write-up is scaffolding, not fact. I didn't have the details of what
-  you actually built, so the structure is here and the specifics are yours to
-  fill in. Rewrite freely; delete anything that isn't true.
+  Written from the Swix project notes. Contract addresses, percentages, test
+  counts, and the end-to-end run are all real. Adjust any framing that
+  misrepresents your thinking.
 */}
 
 ## What it is
 
-Swix is an attempt at ticketing where the ticket itself is the asset — issued,
-verified, and transferred on-chain rather than held in a platform's database.
-The question I wanted to answer was whether the parts that sound simple in a
-whitepaper survive contact with the details: transfer rules, resale limits,
-what happens when someone loses access to a wallet.
+Swix is a ticketing platform where the resale rules are enforced by the
+contract rather than by a terms-of-service page. An artist sets a maximum
+resale price and a royalty they earn on every resale, and those two rules
+execute automatically on-chain — there is no policy to appeal to and nobody to
+enforce it after the fact.
 
-It is a work in progress. I'd rather show it mid-flight than wait for a
-version that never quite arrives.
+It is a work in progress. The contracts are deployed and working on a testnet,
+the marketplace frontend is live, and the parts I would want solved before
+calling it real are mainstream payments and a move to a cheaper chain.
 
-## Why I built it
+## The idea: rules that execute
 
-Ticketing is a good excuse to learn smart contracts because the domain has
-real constraints. A ticket has to be unique, it has to be verifiable at a door
-by someone who is not a developer, and it has to be transferable without
-letting scalpers trivially automate the whole thing. Those constraints push
-back on naive designs quickly.
+The problem with ticket resale is not that it happens — it is that once a
+ticket leaves the original platform, the artist has no say in what happens to
+it and sees none of the money. A ticket sold for face value and resold for ten
+times that is a transfer of value away from the person who created the demand.
 
-{/* TODO: replace with your actual motivation. */}
+So the two rules that matter are a **price cap** and a **royalty**, and both
+are stored in the contract at deployment:
+
+- **Resale cap** — 20% above face value by default. A £50 ticket cannot be
+  listed above £60. The contract rejects the listing; it is not a warning.
+- **Royalty** — 5% of every resale, paid to the promoter's wallet as part of
+  the same transaction.
+
+Both are adjustable by the promoter through `setResaleCap()` and
+`setRoyaltyPercent()`, gated behind a role so only they can change them. That
+adjustability is the part I think actually matters. A stadium act might set 0%
+and make tickets non-transferable; an indie band might set 30% to encourage an
+active resale market. The same contract serves both because the number is a
+parameter, not a constant.
+
+Because face value is stored per ticket at mint, the cap applies per ticket
+rather than per event — a £50 general admission ticket and a £100 VIP ticket
+get their own ceilings automatically.
+
+## How the two contracts fit together
+
+**TicketNFT** is the ownership layer — an ERC-721 where each token carries its
+face value, seat, tier, and used status. It also restricts transfers: a ticket
+can only move through the official marketplace. That restriction is what makes
+the rest enforceable, because a ticket that can be sent anywhere is a ticket
+whose resale rules are optional.
+
+**Marketplace** sits on top and handles everything after the first sale —
+listing, buying, cancelling — and is where the cap and the royalty split are
+applied.
+
+Neither works properly alone, which turned out to matter more than I expected.
+
+## Proving it worked
+
+Thirteen tests pass against the contracts, but the run I actually trusted was
+the end-to-end one on Sepolia: mint a ticket, list it for resale, buy it from a
+different wallet, and confirm where the money went. All four transactions
+confirmed, and the royalty split came out exact — 0.0005 ETH to the promoter
+and 0.0095 ETH to the seller on a 0.01 ETH sale.
+
+That was the moment the idea stopped being theoretical. The rules held under
+real conditions, against real wallets, and every transaction is permanently
+recorded and publicly checkable.
 
 ## What I learned
 
-- **On-chain state is expensive, so most design work is deciding what doesn't
-  go on-chain.** The first version tried to store too much. Trimming it down to
-  ownership and transfer rules — and leaving presentation off-chain — made
-  everything cheaper and easier to reason about.
-- **Immutability changes how you write code.** There is no shipping a fix on
-  Monday. That made me slower and more deliberate in a way I think was good for
-  me.
-- **The interesting problems were at the edges,** not in the core contract:
-  wallet onboarding for people who don't own crypto, what verification looks
-  like offline, how to handle a refund when the canonical record isn't yours to
-  edit.
+- **Immutability is a design constraint, not a footnote.** I deployed
+  TicketNFT, then realised it was missing the function that wires the
+  marketplace into the transfer restriction. There is no patching a live
+  contract — the fix was a fresh deployment and migrating everything to the new
+  address. I now spend much longer on an interface before deploying it.
+- **The interesting decisions were about defaults, not code.** Choosing 20% and
+  5% took longer than implementing them. Too low and resellers have no reason
+  to use the platform; too high and the cap stops protecting fans.
+- **The blockchain part is the part users should never see.** Every design
+  decision since has been about hiding it — showing prices in pounds rather
+  than ETH, and looking at email login and card payments so a fan can buy a
+  ticket without knowing what a wallet is. A ticketing product that requires
+  understanding gas fees is not a ticketing product.
+- **Gas costs change the architecture.** On Ethereum mainnet, fees on a £30
+  ticket can approach the price of the ticket. That pushed the whole project
+  toward a cheaper chain, which is a plumbing decision that turns out to
+  determine whether the product is viable at all.
 
 ## Where it stands
 
-{/* TODO: describe the current state honestly — what works, what doesn't. */}
+Both contracts are live on the Sepolia testnet and the marketplace frontend is
+deployed:
 
-Still in progress. The contract logic works in testing; the parts I'd want to
-solve before calling it real are onboarding and the door-verification flow.
+- TicketNFT — [0x8596E3bf2599b213524bC2F9c8B7E99bf1b5210B](https://sepolia.etherscan.io/address/0x8596E3bf2599b213524bC2F9c8B7E99bf1b5210B)
+- Marketplace — [0x8dDbB81679Fa374D019785c248e3477230CfA096](https://sepolia.etherscan.io/address/0x8dDbB81679Fa374D019785c248e3477230CfA096)
+
+Source verification is still outstanding, so those pages currently show
+compiled bytecode rather than readable Solidity. Verifying is on the list.
+
+Still ahead: moving to a low-fee chain, card payments so fans never touch
+crypto, and a small pilot event to find out what breaks when the users are not
+me.

@@ -58,9 +58,9 @@ export const projects: Project[] = [
     slug: "swix",
     title: "Swix",
     status: "Work in progress",
-    stack: ["Solidity", "Smart contracts", "Digital assets"],
+    stack: ["Solidity", "Hardhat", "ERC-721", "React", "wagmi"],
     blurb:
-      "A blockchain ticketing concept — exploring what it takes to make a ticket a digital asset that can be verified and transferred without a middleman. Mostly a vehicle for learning how smart contracts behave once real constraints show up.",
+      "Ticketing where the resale rules live in the contract instead of the terms of service — a price cap and an artist royalty that execute automatically on every resale. Two contracts running on a testnet, a live marketplace frontend, and a working understanding of what immutability costs you when you get an interface wrong.",
     liveUrl: "https://swixtickets.com",
     liveLabel: "swixtickets.com",
     cover: {
