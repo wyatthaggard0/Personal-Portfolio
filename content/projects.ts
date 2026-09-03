@@ -61,9 +61,8 @@ export const projects: Project[] = [
     stack: ["Solidity", "Smart contracts", "Digital assets"],
     blurb:
       "A blockchain ticketing concept — exploring what it takes to make a ticket a digital asset that can be verified and transferred without a middleman. Mostly a vehicle for learning how smart contracts behave once real constraints show up.",
-    // TODO: confirm the live URL. CLAUDE.md lists "swix.com (or live URL)".
-    liveUrl: "https://swix.com",
-    liveLabel: "swix.com",
+    liveUrl: "https://swixtickets.com",
+    liveLabel: "swixtickets.com",
     cover: {
       src: "/work/swix-cover.png",
       alt: "Swix ticketing interface",
