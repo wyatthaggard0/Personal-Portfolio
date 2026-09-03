@@ -1,6 +1,6 @@
 import { Avatar } from "@/components/Avatar";
 import { Figure } from "@/components/Figure";
-import { ProjectMeta, LiveLink } from "@/components/ProjectMeta";
+import { ProjectMeta, LiveLink, ProjectNotice } from "@/components/ProjectMeta";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
@@ -112,6 +112,7 @@ export default function Home() {
               <ProjectMeta project={project} linked />
               <p className="mt-3">{project.blurb}</p>
               <LiveLink project={project} />
+              <ProjectNotice project={project} />
               <Figure shot={project.cover} priority={i === 0} />
             </li>
           ))}

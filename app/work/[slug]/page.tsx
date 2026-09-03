@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Figure } from "@/components/Figure";
 import { LiveEmbed } from "@/components/LiveEmbed";
-import { ProjectMeta, LiveLink } from "@/components/ProjectMeta";
+import { ProjectMeta, LiveLink, ProjectNotice } from "@/components/ProjectMeta";
 import { projects, getProject } from "@/content/projects";
 
 /*
@@ -54,6 +54,7 @@ export default async function ProjectPage({
     <article>
       <ProjectMeta project={project} as="h1" />
       <LiveLink project={project} />
+      <ProjectNotice project={project} />
 
       <Figure shot={project.cover} priority />
 

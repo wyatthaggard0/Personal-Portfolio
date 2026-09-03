@@ -65,3 +65,21 @@ export function LiveLink({ project }: { project: Project }) {
     </p>
   );
 }
+
+/*
+  Standing disclosure for a project — a retired endpoint, a dead demo link,
+  cached-only data. Shown in both the homepage list and the subpage so a
+  visitor never has to click through to find out something no longer works.
+
+  Styled as a mono note against a hairline rule rather than a callout box:
+  no card, no shadow, no colored badge, per the design constraints.
+*/
+export function ProjectNotice({ project }: { project: Project }) {
+  if (!project.notice) return null;
+
+  return (
+    <p className="meta mt-4 border-l border-hairline py-0.5 pl-3">
+      {project.notice}
+    </p>
+  );
+}

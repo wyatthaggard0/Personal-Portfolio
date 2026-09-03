@@ -37,6 +37,13 @@ export type Project = {
   /** Extra images shown on the subpage below the write-up. */
   gallery?: Screenshot[];
   /*
+    Standing disclosure shown on both the homepage entry and the subpage.
+    Use for anything a visitor would otherwise discover by hitting a dead end
+    — a retired inference endpoint, a demo running on cached data, a link
+    that no longer resolves. Rendered in mono against a hairline rule.
+  */
+  notice?: string;
+  /*
     Stretch enhancement: attempt to embed the live project in an iframe on its
     subpage. Many hosts refuse framing via X-Frame-Options / CSP
     frame-ancestors — Streamlit does, and some Vercel defaults do. When the
@@ -87,20 +94,33 @@ export const projects: Project[] = [
     embed: true,
   },
   {
-    slug: "ml-stock-signal",
-    title: "ML Stock Signal Model",
+    slug: "fraud-detection",
+    title: "Fraud Detection",
     status: "Class project",
-    stack: ["Python", "AWS SageMaker", "Vercel"],
+    stack: ["Python", "scikit-learn", "SHAP", "AWS", "Vercel"],
     blurb:
-      "A trained signal model built with course resources, deployed to AWS endpoints and wired to a small hosted app. The interesting part was less the model than everything around it — getting inference to actually serve.",
-    // TODO: add the live demo URL.
+      "A fraud classifier trained on the IEEE-CIS dataset, wrapped in a dashboard that scores a transaction and shows which features drove the score. Tuned logistic regression beat three other models on held-out ROC-AUC, and the interesting part turned out to be how bad a 68% recall looks once you price the false alarms.",
+    // TODO: add the Vercel URL for the dashboard.
     liveUrl: undefined,
+    notice:
+      "The AWS inference endpoint has been retired, so live scoring is no longer available. The dashboard still runs, and every metric shown is the real result from the trained model — but “Score via AWS” will not return a prediction.",
     cover: {
-      src: "/work/ml-signal-cover.png",
-      alt: "Stock signal model interface",
+      src: "/work/fraud-detection-cover.png",
+      alt: "Fraud detection dashboard showing loss prevented, fraud caught, ROC-AUC, and performance metrics",
     },
-    gallery: [],
-    // Streamlit-hosted apps block framing; leave false unless the app moves.
+    gallery: [
+      {
+        src: "/work/fraud-detection-scoring.png",
+        alt: "Model comparison chart and the transaction scoring panel",
+        caption: "Four models compared; transaction scoring against the endpoint",
+      },
+      {
+        src: "/work/fraud-detection-shap.png",
+        alt: "SHAP waterfall, feature importance ranking, and feature glossary",
+        caption: "SHAP attribution, with a glossary for the anonymized features",
+      },
+    ],
+    // Endpoint is retired; nothing to gain from framing the dashboard.
     embed: false,
   },
 ];
