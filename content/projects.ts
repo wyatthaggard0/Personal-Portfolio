@@ -100,8 +100,8 @@ export const projects: Project[] = [
     stack: ["Python", "scikit-learn", "SHAP", "AWS", "Vercel"],
     blurb:
       "A fraud classifier trained on the IEEE-CIS dataset, wrapped in a dashboard that scores a transaction and shows which features drove the score. Tuned logistic regression beat three other models on held-out ROC-AUC, and the interesting part turned out to be how bad a 68% recall looks once you price the false alarms.",
-    // TODO: add the Vercel URL for the dashboard.
-    liveUrl: undefined,
+    liveUrl: "https://frauddetection-bice.vercel.app/",
+    liveLabel: "frauddetection-bice.vercel.app",
     notice:
       "The AWS inference endpoint has been retired, so live scoring is no longer available. The dashboard still runs, and every metric shown is the real result from the trained model — but “Score via AWS” will not return a prediction.",
     cover: {

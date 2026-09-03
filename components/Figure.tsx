@@ -7,6 +7,10 @@ import type { Screenshot } from "@/content/projects";
 /*
   A screenshot with a graceful placeholder.
 
+  object-contain, not object-cover: dashboard screenshots come in whatever
+  aspect ratio the window was, and cropping one silently cuts off numbers or
+  chart axes. Letterboxing against the paper background is the safer default.
+
   Screenshots are static files in public/. Until one exists, this renders a
   hairline box naming the exact path the file should live at, so a missing
   image reads as a to-do rather than a broken page. Drop the file in and the
@@ -35,7 +39,7 @@ export function Figure({
             alt={shot.alt}
             fill
             sizes="(max-width: 768px) 100vw, 720px"
-            className="object-cover"
+            className="object-contain"
             priority={priority}
             onError={() => setFailed(true)}
           />
