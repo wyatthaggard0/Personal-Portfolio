@@ -96,7 +96,7 @@ export const projects: Project[] = [
     slug: "fraud-detection",
     title: "Fraud Detection",
     status: "Class project",
-    stack: ["Python", "scikit-learn", "SHAP", "AWS", "Vercel"],
+    stack: ["Python", "scikit-learn", "SHAP", "AWS SageMaker", "Vercel"],
     blurb:
       "A fraud classifier trained on the IEEE-CIS dataset, wrapped in a dashboard that scores a transaction and shows which features drove the score. Tuned logistic regression beat three other models on held-out ROC-AUC, and the interesting part turned out to be how bad a 68% recall looks once you price the false alarms.",
     liveUrl: "https://frauddetection-bice.vercel.app/",
