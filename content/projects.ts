@@ -32,6 +32,12 @@ export type Project = {
   liveUrl?: string;
   /** Display text for the live link, e.g. "swix.com". Defaults to the host. */
   liveLabel?: string;
+  /*
+    Public source, shown next to the live link. Only worth setting where the
+    repository genuinely lets a reader check the work, which matters most when
+    a live demo has stopped responding.
+  */
+  repoUrl?: string;
   /** Leading image on both homepage and subpage. */
   cover: Screenshot;
   /** Extra images shown on the subpage below the write-up. */
@@ -101,6 +107,7 @@ export const projects: Project[] = [
       "A fraud classifier trained on the IEEE-CIS dataset, wrapped in a dashboard that scores a transaction and shows which features drove the score. Tuned logistic regression beat three other models on held-out ROC-AUC, and the interesting part turned out to be how bad a 68% recall looks once you price the false alarms.",
     liveUrl: "https://frauddetection-bice.vercel.app/",
     liveLabel: "frauddetection-bice.vercel.app",
+    repoUrl: "https://github.com/wyatthaggard0/Machine-Learning-Project",
     notice:
       "The AWS inference endpoint has been retired, so live scoring is no longer available. The dashboard still runs, and every metric shown is a real result from the trained model, however “Score via AWS” will not return a prediction.",
     cover: {

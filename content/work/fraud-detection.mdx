@@ -22,8 +22,9 @@ full dataset it probably would have.
 
 The final pipeline was deployed as an AWS SageMaker endpoint. A Vercel-hosted
 dashboard calls it with a JSON payload of transaction features and gets back a
-fraud probability and a recommended action of SAFE, REVIEW, or FLAGGED, at
-sub-second latency.
+fraud probability and a recommended action, at sub-second latency. Anything
+at or above 0.50 comes back FLAGGED, between 0.25 and 0.50 REVIEW, and below
+that SAFE.
 
 ## Results
 
