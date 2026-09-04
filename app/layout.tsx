@@ -33,10 +33,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://wyatt-haggard.com"),
   title: {
     default: `${profile.name}`,
-    template: `%s — ${profile.name}`,
+    template: `%s | ${profile.name}`,
   },
   description:
-    "Projects and ideas I've explored and learned from — blockchain ticketing, AI infrastructure, and applied machine learning.",
+    "Projects and ideas I've explored and learned from, including blockchain ticketing, AI infrastructure, and applied machine learning.",
   openGraph: {
     type: "website",
     siteName: profile.name,

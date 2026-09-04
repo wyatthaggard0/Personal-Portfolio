@@ -60,7 +60,7 @@ export const projects: Project[] = [
     status: "Work in progress",
     stack: ["Solidity", "Hardhat", "ERC-721", "React", "wagmi"],
     blurb:
-      "Ticketing where the resale rules live in the contract instead of the terms of service — a price cap and an artist royalty that execute automatically on every resale. Two contracts running on a testnet, a live marketplace frontend, and a working understanding of what immutability costs you when you get an interface wrong.",
+      "Ticketing where the resale rules live in the contract instead of the terms of service, a price cap and an artist royalty that execute automatically on every resale. Two contracts running on a testnet, a live marketplace frontend, and a much better understanding of what immutability costs you when you get an interface wrong.",
     liveUrl: "https://swixtickets.com",
     liveLabel: "swixtickets.com",
     cover: {
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     status: "Shipped · Self-directed",
     stack: ["Next.js", "TypeScript", "Vercel"],
     blurb:
-      "A dashboard for tracking AI infrastructure — capacity, spend, and utilization in one view. Built end to end on my own to see how far I could get turning a messy question into something legible at a glance.",
+      "A dashboard for tracking AI infrastructure, capacity, spend, and utilization in one view. Built end to end on my own to see how far I could get turning a messy question into something legible at a glance.",
     // TODO: add the live demo URL.
     liveUrl: undefined,
     cover: {
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     liveUrl: "https://frauddetection-bice.vercel.app/",
     liveLabel: "frauddetection-bice.vercel.app",
     notice:
-      "The AWS inference endpoint has been retired, so live scoring is no longer available. The dashboard still runs, and every metric shown is the real result from the trained model — but “Score via AWS” will not return a prediction.",
+      "The AWS inference endpoint has been retired, so live scoring is no longer available. The dashboard still runs, and every metric shown is a real result from the trained model, however “Score via AWS” will not return a prediction.",
     cover: {
       src: "/work/fraud-detection-cover.png",
       alt: "Fraud detection dashboard showing loss prevented, fraud caught, ROC-AUC, and performance metrics",

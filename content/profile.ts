@@ -21,9 +21,9 @@ export const profile = {
     expertise.
   */
   bio: [
-    "I study accounting and business information systems at TCU, on the financial technologies track. The coursework is where I learned to read a system; the projects here are where I found out what I actually understood.",
-    "Most of them started as a question I couldn't answer by reading about it — how a smart contract behaves once real constraints show up, what it takes to get a model actually serving predictions, how to make a pile of infrastructure data legible at a glance.",
-    "None of these are finished products and I'm not claiming expertise in any of them. They're the projects I learned the most from, written up honestly about what worked and what didn't.",
+    "I study accounting and business information systems at TCU, on the financial technologies track. However, most of what I know about actually building things I learned outside of class, by starting projects I didn't know how to finish and working them out as I went.",
+    "Every project on this site started as a question I couldn't answer by reading about it. How a smart contract behaves once real constraints show up, what it takes to get a model serving predictions instead of sitting in a notebook, how to make a pile of data legible at a glance. Through this process I've come to realize that the interesting problems are almost never the ones I expected going in.",
+    "None of these are finished products, and I'm not claiming expertise in any of them. They're the projects I walked away from having learned the most, and I've written them up honestly, including the parts that didn't work.",
   ],
 
   /** Headshot. Drop the file at public/headshot.jpg (square crop reads best). */
@@ -36,7 +36,7 @@ export const profile = {
     school: "Texas Christian University",
     org: "Neeley School of Business",
     degree:
-      "B.B.A. — Accounting and Business Information Systems: Financial Technologies",
+      "B.B.A. in Accounting and Business Information Systems: Financial Technologies",
     honors: "Dean's Honors List",
   },
 
@@ -63,7 +63,7 @@ export const profile = {
     {
       role: "President",
       org: "Business Information Systems Club, TCU",
-      note: "Elected to lead a 190+ member organization — executive board operations, strategic planning, alumni mixers, and recruitment.",
+      note: "Elected to lead a 190+ member organization, overseeing executive board operations, strategic planning, alumni mixers, and recruitment.",
     },
   ],
 
@@ -77,5 +77,5 @@ export const profile = {
 
   /** Tools and credentials, rendered inline in mono. */
   tools: ["Python", "Tableau", "Power BI", "Claude", "Excel"],
-  certifications: "Microsoft Office Specialist — Excel, PowerPoint",
+  certifications: "Microsoft Office Specialist: Excel and PowerPoint",
 };
