@@ -18,9 +18,9 @@
   --color-taupe: #8c8370;
   --color-hairline: #d8d0be;
 
-  /* Serif display for titles, sans for body, mono for metadata. */
-  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Display serif for titles, text serif for body, mono for metadata. */
+  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-body-face), Georgia, "Times New Roman", serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -28,8 +28,10 @@ body {
   background-color: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  /* Slightly open body leading — this reads as a document, not an app. */
-  line-height: 1.65;
+  /* Serif body text carries a little more size and a little less leading than
+     the sans it replaced, which is how newspaper text is normally set. */
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 /* Metadata rendered in mono sits optically large next to serif/sans.
