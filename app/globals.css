@@ -9,10 +9,11 @@
   /* Palette — warm tan paper, near-black ink, warm taupe-gray metadata.
      No accent color by design. */
   --color-paper: #f4efe4;
-  /* The ground the page sits on — a deeper tan visible either side of the
-     content column. Change this one value to retint the side bars; a genuine
-     accent color would go here too. */
-  --color-ground: #e6ddc8;
+  /* The ground the page sits on, visible either side of the content column.
+     A muted olive — dark enough to frame the paper and give the eye somewhere
+     to rest, warm enough not to fight the tan. Retint the side bars by
+     changing this one value. */
+  --color-ground: #5f6549;
   --color-ink: #201d18;
   --color-taupe: #8c8370;
   --color-hairline: #d8d0be;
