@@ -18,9 +18,11 @@
   --color-taupe: #8c8370;
   --color-hairline: #d8d0be;
 
-  /* Display serif for titles, text serif for body, mono for metadata. */
-  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-body-face), Georgia, "Times New Roman", serif;
+  /* Times New Roman for headings and body, served from the reader's system.
+     Liberation Serif and Tinos are metric-compatible stand-ins for Linux and
+     Android, so line breaks stay put wherever the page is opened. */
+  --font-display: "Times New Roman", Times, "Liberation Serif", Tinos, serif;
+  --font-sans: "Times New Roman", Times, "Liberation Serif", Tinos, serif;
   --font-ui: var(--font-ui-face), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 }
@@ -29,8 +31,8 @@ body {
   background-color: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 /* Caps the reading measure at roughly 70 characters. The paper column stays

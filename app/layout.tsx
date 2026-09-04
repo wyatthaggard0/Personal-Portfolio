@@ -1,39 +1,20 @@
 import type { Metadata } from "next";
-import {
-  Playfair_Display,
-  Source_Serif_4,
-  Source_Sans_3,
-  IBM_Plex_Mono,
-} from "next/font/google";
+import { Source_Sans_3, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { profile } from "@/content/profile";
 import "./globals.css";
 
 /*
-  Type system, aiming at the Wall Street Journal's newspaper feel.
+  Type system.
 
-  WSJ sets headlines in Escrow and body text in Exchange, both proprietary
-  Font Bureau faces. These are the closest open equivalents: Playfair Display
-  is a Scotch Roman in the same family of shapes as Escrow, and Source Serif
-  is a text serif built for continuous reading at small sizes like Exchange.
-  Nav and labels are set in Source Sans, the sibling of the body serif, which
-  is also what WSJ does with Retina. Mono is kept for inline code only.
+  Headings and body are Times New Roman, taken from the reader's own system
+  rather than loaded. Every desktop and mobile platform that matters ships it
+  or ships Times, so there is no webfont to download for the text, and the
+  fallbacks cover Linux and Android.
 
-  Each face is exposed as a CSS variable and consumed by @theme in
-  globals.css, so swapping one is a single-line change here.
+  Labels and nav stay in Source Sans, which is the one loaded face left for
+  the interface. Mono is kept for inline code.
 */
-const playfair = Playfair_Display({
-  variable: "--font-display-face",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  variable: "--font-body-face",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 const sourceSans = Source_Sans_3({
   variable: "--font-ui-face",
   subsets: ["latin"],
@@ -70,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${sourceSerif.variable} ${sourceSans.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         {/*
