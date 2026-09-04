@@ -60,14 +60,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           of ivory. Hairlines mark the column edges; on narrow screens the
           column fills the viewport and the bars disappear on their own.
 
-          The column width is what sets the line length, rather than a separate
-          cap on the prose. Everything therefore shares one right edge: nav,
-          headings, body, rules and images all stop in the same place.
+          Line length is set by the column width less its side margins, rather
+          than by a separate cap on the prose, so everything shares one right
+          edge: nav, headings, body, rules and images all stop in the same
+          place. The margins widen at sm, which is what makes the column read
+          as a sheet of paper rather than a full-bleed panel.
         */}
-        <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col border-hairline bg-paper sm:border-x">
+        <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col border-hairline bg-paper sm:border-x">
           <Nav />
-          <main className="grow px-6 py-12 sm:py-16">{children}</main>
-          <footer className="border-t border-hairline px-6 py-6">
+          <main className="grow px-6 py-12 sm:px-12 sm:py-16">{children}</main>
+          <footer className="border-t border-hairline px-6 py-6 sm:px-12">
             <p className="meta">{profile.name}</p>
           </footer>
         </div>

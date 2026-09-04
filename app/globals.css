@@ -31,7 +31,9 @@ body {
   background-color: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
+  /* Times sets small on screen, so it carries a larger size than a modern
+     screen serif would at the same measure. */
+  font-size: 1.1875rem;
   line-height: 1.6;
 }
 

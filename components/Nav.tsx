@@ -20,7 +20,7 @@ export function Nav() {
 
   return (
     <nav className="border-b border-hairline">
-      <ul className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-6 py-4">
+      <ul className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-6 py-4 sm:px-12">
         {links.map((link, i) => {
           const active = pathname === link.href;
           return (
