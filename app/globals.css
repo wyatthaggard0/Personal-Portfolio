@@ -9,6 +9,10 @@
   /* Palette — warm tan paper, near-black ink, warm taupe-gray metadata.
      No accent color by design. */
   --color-paper: #f4efe4;
+  /* The ground the page sits on — a deeper tan visible either side of the
+     content column. Change this one value to retint the side bars; a genuine
+     accent color would go here too. */
+  --color-ground: #e6ddc8;
   --color-ink: #201d18;
   --color-taupe: #8c8370;
   --color-hairline: #d8d0be;
@@ -20,7 +24,7 @@
 }
 
 body {
-  background-color: var(--color-paper);
+  background-color: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
   /* Slightly open body leading — this reads as a document, not an app. */

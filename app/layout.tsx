@@ -53,16 +53,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${newsreader.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
-        <Nav />
-        <main className="mx-auto w-full max-w-3xl grow px-6 py-12 sm:py-16">
-          {children}
-        </main>
-        <footer className="border-t border-hairline">
-          <div className="mx-auto max-w-3xl px-6 py-6">
+      <body className="min-h-full">
+        {/*
+          The content sits on a paper column against a deeper ground, so a wide
+          window shows two tonal bars either side rather than an unbroken field
+          of ivory. Hairlines mark the column edges; on narrow screens the
+          column fills the viewport and the bars disappear on their own.
+        */}
+        <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col border-hairline bg-paper sm:border-x">
+          <Nav />
+          <main className="grow px-6 py-12 sm:py-16">{children}</main>
+          <footer className="border-t border-hairline px-6 py-6">
             <p className="meta">{profile.name}</p>
-          </div>
-        </footer>
+          </footer>
+        </div>
       </body>
     </html>
   );

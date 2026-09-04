@@ -19,7 +19,7 @@ export function Nav() {
 
   return (
     <nav className="border-b border-hairline">
-      <ul className="mx-auto flex max-w-3xl flex-wrap gap-x-6 gap-y-1 px-6 py-4">
+      <ul className="flex flex-wrap gap-x-6 gap-y-1 px-6 py-4">
         {links.map((link) => {
           const active = pathname === link.href;
           return (
