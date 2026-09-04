@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
+import {
+  Playfair_Display,
+  Source_Serif_4,
+  Source_Sans_3,
+  IBM_Plex_Mono,
+} from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { profile } from "@/content/profile";
 import "./globals.css";
@@ -11,7 +16,8 @@ import "./globals.css";
   Font Bureau faces. These are the closest open equivalents: Playfair Display
   is a Scotch Roman in the same family of shapes as Escrow, and Source Serif
   is a text serif built for continuous reading at small sizes like Exchange.
-  Metadata stays mono, which is this site's own idea rather than WSJ's.
+  Nav and labels are set in Source Sans, the sibling of the body serif, which
+  is also what WSJ does with Retina. Mono is kept for inline code only.
 
   Each face is exposed as a CSS variable and consumed by @theme in
   globals.css, so swapping one is a single-line change here.
@@ -24,6 +30,12 @@ const playfair = Playfair_Display({
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-body-face",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  variable: "--font-ui-face",
   subsets: ["latin"],
   display: "swap",
 });
@@ -58,7 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${sourceSerif.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${sourceSerif.variable} ${sourceSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         {/*

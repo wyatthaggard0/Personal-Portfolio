@@ -21,6 +21,7 @@
   /* Display serif for titles, text serif for body, mono for metadata. */
   --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-body-face), Georgia, "Times New Roman", serif;
+  --font-ui: var(--font-ui-face), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -34,12 +35,12 @@ body {
   line-height: 1.6;
 }
 
-/* Metadata rendered in mono sits optically large next to serif/sans.
-   Nudge it down and open the tracking so it reads as a label. */
+/* Labels, nav, status lines, captions. A sans set small and slightly tracked,
+   sitting quietly under the serif. Mono is reserved for inline code. */
 .meta {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
   color: var(--color-taupe);
 }
 

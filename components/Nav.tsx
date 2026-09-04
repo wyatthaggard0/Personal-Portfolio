@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { projects } from "@/content/projects";
@@ -19,23 +20,30 @@ export function Nav() {
 
   return (
     <nav className="border-b border-hairline">
-      <ul className="flex flex-wrap gap-x-6 gap-y-1 px-6 py-4">
-        {links.map((link) => {
+      <ul className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-6 py-4">
+        {links.map((link, i) => {
           const active = pathname === link.href;
           return (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={
-                  active
-                    ? "meta text-ink no-underline"
-                    : "meta no-underline transition-colors hover:text-ink"
-                }
-              >
-                {link.label}
-              </Link>
-            </li>
+            <Fragment key={link.href}>
+              {i > 0 ? (
+                <li aria-hidden="true" className="meta select-none opacity-40">
+                  |
+                </li>
+              ) : null}
+              <li>
+                <Link
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={
+                    active
+                      ? "meta text-ink no-underline"
+                      : "meta no-underline transition-colors hover:text-ink"
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            </Fragment>
           );
         })}
       </ul>
