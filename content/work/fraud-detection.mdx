@@ -1,83 +1,63 @@
-{/*
-  Written from the dashboard screenshots — every figure below is real and
-  matches what the app reports. The framing and the "what I learned" reads are
-  mine; adjust anything that misrepresents your thinking.
-*/}
+{/* Figures are real and match the dashboard. */}
 
 ## What it is
 
-A fraud classifier trained on the IEEE-CIS Fraud Detection dataset, wrapped in
-a dashboard that scores an individual transaction and shows which features
-drove the score. Built as a class project using course resources; the
-deployment, the interface, and the explainability layer were mine.
+A fraud model trained on the IEEE-CIS dataset, with a dashboard that scores a
+transaction and shows what drove the score. Class project. The modeling used
+course resources. I built the deployment, the interface, and the SHAP layer.
 
-I trained four models and compared them on held-out ROC-AUC — logistic
-regression, random forest, XGBoost, and Gaussian naive Bayes. Tuned logistic
-regression won at **80.9%**, which was not the result I expected. The tree
-ensembles were supposed to be the interesting ones.
+I compared four models on held-out ROC-AUC: logistic regression, random forest,
+XGBoost, and Gaussian naive Bayes. Tuned logistic regression came out ahead at
+80.9%. I expected one of the tree models to win.
 
-## Reading the numbers honestly
+## The numbers
 
-The headline metric flatters the model. The rest of the table does not, and
-that gap is the most useful thing I got out of this project.
+ROC-AUC is 80.89%. Precision on the fraud class is 6.91%. Recall is 67.92%.
 
-At the chosen threshold the model catches **67.9% of fraudulent
-transactions** — about **63.4% of total fraud value**, or $5,763.84 of the
-$9,090.46 of fraud in the test set. That sounds reasonable until you look at
-precision: **6.91%**. Roughly nineteen of every twenty transactions the model
-flags are legitimate. It raised **485 false alarms** to catch what it caught.
+The last two matter more than the first. The model catches about 68% of
+fraudulent transactions, worth 63.4% of the fraud value in the test set —
+$5,763.84 of $9,090.46. To get that it flagged 485 legitimate transactions.
+So about 19 in 20 flags are wrong.
 
-That is not a bug in the model so much as the shape of the problem. Fraud is
-rare, so a classifier tuned to find most of it will necessarily drag in a
-large volume of ordinary transactions. The F1 score of 12.54% is what happens
-when you average a good recall against a terrible precision, and it is why I
-stopped treating F1 as a summary of anything.
+F1 lands at 12.54%, which is what you get averaging decent recall with bad
+precision. I stopped quoting F1 after this.
 
-The honest read is that **the threshold is a business decision, not a modeling
-one**. What a false alarm actually costs — a review queue, a declined card, an
-annoyed customer — is not a number the dataset contains, and no amount of
-tuning produces it. I could move the threshold to make precision look
-respectable and watch recall collapse. Picking a point on that curve requires
-knowing something the data does not tell you.
+Fraud is rare, so anything tuned to catch most of it pulls in a lot of normal
+transactions. Moving the threshold trades one error for the other. Where you
+set it depends on what a false alarm actually costs — review time, a declined
+card, a customer who gives up — and none of that is in the dataset. That part
+is a business call.
 
-One thing I was glad to see: train AUC of 81.07% against test AUC of 81.51%,
-a gap of **-0.43 percentage points**. The model is not overfitting. Whatever
-its limitations, they are not the result of memorizing the training set.
+Train AUC is 81.07% against test AUC of 81.51%. The gap is -0.43 points, so
+it isn't overfitting.
 
-## Explaining a score
+## Explaining the score
 
-The IEEE-CIS features are largely anonymized — the dataset ships columns named
-`V70`, `C12`, and `M6` with no published definitions — so a model built on them
-is opaque by default. That bothered me more than the metrics did.
+The IEEE-CIS features are anonymized. The dataset ships columns called V70,
+C12, and M6 with no published definitions, so the model is a black box by
+default.
 
-I added SHAP attribution so every score decomposes into the features that
-produced it, moving from a base rate of 46.78% to the final prediction. Across
-the test set the heaviest contributors are `V70` and `V69` (Vesta's own
-card-activity and device-fingerprint scores), `card6` (debit versus credit),
-and `C12` (transactions from the same device).
+I added SHAP so each score breaks into the features that produced it, starting
+from a 46.78% base rate. V70 and V69 carry the most weight — those are Vesta's
+own card-activity and device-fingerprint scores — then card6 (debit vs credit)
+and C12 (transactions from the same device).
 
-I also wrote a plain-language glossary for each feature, because a SHAP chart
-labeled `V292` explains nothing to a person who has not read the dataset
-documentation. Making the output legible turned out to be a bigger share of
-the work than training the model was.
+I also wrote a plain-language glossary for the features. A chart labeled V292
+tells a reader nothing. The glossary took longer than training the model.
 
-## What I learned
+## What I'd take from it
 
-- **A single headline metric can hide the whole story.** ROC-AUC near 81% and
-  precision near 7% describe the same model.
-- **Class imbalance is a framing problem, not just a sampling problem.** The
-  useful question was never "how accurate is it" — accuracy is meaningless when
-  the positive class is this rare — but "what does each kind of mistake cost."
-- **Explainability is not a bonus feature.** A fraud score nobody can
-  interrogate is not usable, regardless of its AUC.
-- **Deployment surfaced assumptions that training did not.** Serving a
-  prediction meant building the feature vector on demand, from inputs shaped
-  differently than the training data.
+- ROC-AUC of 81% and precision of 7% describe the same model. One number
+  isn't enough to judge it.
+- Accuracy is useless when the positive class is this rare. The useful
+  question is what each kind of mistake costs.
+- A score nobody can question isn't much use, whatever its AUC.
+- Serving predictions meant building the feature vector on demand, from inputs
+  shaped differently than the training data. That was most of the deployment
+  work.
 
 ## Where it stands
 
-Complete as a class project. The AWS inference endpoint has since been retired,
-so the scoring panel no longer returns live predictions — every metric in the
-dashboard is the real trained result, but "Score via AWS" will not respond.
-
-{/* TODO: anything you'd do differently, or would build next. */}
+Finished as a class project. The AWS endpoint is retired, so the scoring panel
+no longer returns live predictions. Every metric in the dashboard is a real
+result from the trained model.
