@@ -67,7 +67,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mt-8">
+      <section className="measure mt-8">
         {profile.bio.map((paragraph, i) => (
           <p key={i} className="mt-4 first:mt-0">
             {paragraph}
@@ -110,7 +110,7 @@ export default function Home() {
           {projects.map((project, i) => (
             <li key={project.slug}>
               <ProjectMeta project={project} linked />
-              <p className="mt-3">{project.blurb}</p>
+              <p className="measure mt-3">{project.blurb}</p>
               <LiveLink project={project} />
               <ProjectNotice project={project} />
               <Figure shot={project.cover} priority={i === 0} />

@@ -58,7 +58,7 @@ export default async function ProjectPage({
 
       <Figure shot={project.cover} priority />
 
-      <div className="mt-8 border-t border-hairline pt-2">
+      <div className="measure mt-8 border-t border-hairline pt-2">
         <WriteUp />
       </div>
 
