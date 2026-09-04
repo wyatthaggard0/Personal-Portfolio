@@ -9,13 +9,21 @@ import type { MDXComponents } from "mdx/types";
   styled directly.
 */
 const components: MDXComponents = {
+  /*
+    Section heads carry weight, size and space rather than an underline. An
+    underline would collide with the real links in these write-ups, where it
+    already means "this is clickable". The generous top margin does as much
+    separating work as the styling does.
+  */
   h2: ({ children }) => (
-    <h2 className="mt-10 font-display text-xl leading-tight sm:text-2xl">
+    <h2 className="mt-14 font-display text-2xl font-bold leading-tight sm:text-[1.75rem]">
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mt-8 font-display text-lg leading-tight">{children}</h3>
+    <h3 className="mt-10 font-display text-xl font-bold leading-tight">
+      {children}
+    </h3>
   ),
   p: ({ children }) => <p className="mt-4">{children}</p>,
   ul: ({ children }) => (
