@@ -35,13 +35,6 @@ body {
   line-height: 1.6;
 }
 
-/* Caps the reading measure at roughly 70 characters. The paper column stays
-   its full width so the side bars are unaffected; only running prose is
-   constrained, because long lines are harder to read than small type. */
-.measure {
-  max-width: 70ch;
-}
-
 /* Labels, nav, status lines, captions. A sans set small and slightly tracked,
    sitting quietly under the serif. Mono is reserved for inline code. */
 .meta {

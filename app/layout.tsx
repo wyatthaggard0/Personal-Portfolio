@@ -59,8 +59,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           window shows two tonal bars either side rather than an unbroken field
           of ivory. Hairlines mark the column edges; on narrow screens the
           column fills the viewport and the bars disappear on their own.
+
+          The column width is what sets the line length, rather than a separate
+          cap on the prose. Everything therefore shares one right edge: nav,
+          headings, body, rules and images all stop in the same place.
         */}
-        <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col border-hairline bg-paper sm:border-x">
+        <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col border-hairline bg-paper sm:border-x">
           <Nav />
           <main className="grow px-6 py-12 sm:py-16">{children}</main>
           <footer className="border-t border-hairline px-6 py-6">
