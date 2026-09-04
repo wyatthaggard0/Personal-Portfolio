@@ -21,9 +21,9 @@ export const profile = {
     expertise.
   */
   bio: [
-    "I study accounting and business information systems at TCU, on the financial technologies track. However, most of what I know about actually building things I learned outside of class, by starting projects I didn't know how to finish and working them out as I went.",
-    "Every project on this site started as a question I couldn't answer by reading about it. How a smart contract behaves once real constraints show up, what it takes to get a model serving predictions instead of sitting in a notebook, how to make a pile of data legible at a glance. Through this process I've come to realize that the interesting problems are almost never the ones I expected going in.",
-    "None of these are finished products, and I'm not claiming expertise in any of them. They're the projects I walked away from having learned the most, and I've written them up honestly, including the parts that didn't work.",
+    "I'm a senior at TCU studying Accounting and Business Information Systems, with an interest in the intersection of accounting, technology, and digital transformation. My background consists of tax, farm operations, and event facility management, providing a grounded understanding of how businesses function beyond the classroom.",
+    "I'm especially interested in the growing role of information systems, data, and automation in modern financial work. With an entrepreneurial mindset and a hands-on work ethic, I'm focused on building a career at the intersection of accounting, technology, and real-world operations.",
+    "The projects below came out of that interest. None of them are finished products, and I'm not claiming expertise in any of them. They're the projects I walked away from having learned the most, and I've written them up honestly, including the parts that didn't work.",
   ],
 
   /** Headshot. Drop the file at public/headshot.jpg (square crop reads best). */
