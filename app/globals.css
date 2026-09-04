@@ -10,10 +10,10 @@
      No accent color by design. */
   --color-paper: #f4efe4;
   /* The ground the page sits on, visible either side of the content column.
-     A muted olive — dark enough to frame the paper and give the eye somewhere
-     to rest, warm enough not to fight the tan. Retint the side bars by
+     A very dark pine green, nearly black, with enough green left in it to read
+     as a color rather than as black. Retint the side bars by
      changing this one value. */
-  --color-ground: #2f3325;
+  --color-ground: #111e18;
   --color-ink: #201d18;
   --color-taupe: #8c8370;
   --color-hairline: #d8d0be;
